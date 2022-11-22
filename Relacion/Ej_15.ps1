@@ -4,7 +4,7 @@ Invoke-Expression .\clear.ps1
 
 # Variables
 $script:parametro=$Args[0]
-$script:directorio = "C:\Windows"
+$script:ruta_dir = "C:\test-script"
 
 
 function salida_pantalla {
