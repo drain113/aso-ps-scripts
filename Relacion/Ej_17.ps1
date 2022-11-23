@@ -9,71 +9,66 @@
 
 Invoke-Expression .\clear.ps1
 
-#----------------------a) Fecha y hora del sistema.-------------------
+# --- VARIABLES ---
 
-function show_date_hour {
+$script:nombre = Guille
+$script:apellido1 = Montero
+$script:apellido2 = Martín
+$script:directorio = GetLocation
+$script:nombre_fichero = ej17.txt
+# -----------------
+
+# Fecha y hora
+function fecha-hora {
     Get-Date
 }
 
-#----------------------b) Nombre y apellidos.-------------------------
-
-function first_last_name {
-    $full_name = "$first_name $last_name"
-
-    $full_name
+# Nombre y apellidos
+function nombre-apellidos {
+    $nombre_apellidos="$nombre $apellido1 $apellido2"
+    $nombre_apellidos
 }
 
-#---------------------# d) Procesos en ejecución.----------------------
-
-function system_variables {
+# Variables del sistema
+function variables-sistema {
     Get-ChildItem Env:
 }
 
-#----------------e) Usuarios conectados en el sistema.-------------------
-
-function get_active_processes {
+# Procesos en ejecución
+function procesos {
     Get-Process
 }
 
-#----------------------f) Información de configuración de la red ip, mask, interfaces.-------------------------
-
-function get_users_connected {
+# Usuarios conectados en el sistema
+function usuarios-conectados {
     Get-RDUserSession
 }
 
-#----------------------b) Nombre y apellidos.-------------------------
-
-function net_information {
-    Get-NetIPConfiguration
+# Información de configuración de la red ip, mask, interfaces.
+function red-config {
+    ipconfig
 }
 
-#----------------------b) Nombre y apellidos.-------------------------
-
-function routing_table {
+# Información de la tabla de enrutado.
+function tabla-rutas {
     Get-NetRoute
 }
 
-#----------------------b) Nombre y apellidos.-------------------------
-
-function main_s_17 {
-    show_date_hour
-
-    first_last_name
-
-    system_variables
-
-    get_active_processes
-
-    get_users_connected
-
-    net_information
-
-    routing_table
+# Función conjunta
+function completo {
+    fecha-hora
+    nombre-apellidos
+    variables-sistema
+    procesos
+    usuarios-conectados
+    red-config
+    tabla-rutas
 }
 
-#----------------------b) Nombre y apellidos.-------------------------
-if ($MyInvocation.InvocationName -ne '&') {
-    Invoke-Expression .\create_directory.ps1
+# VVVVVVV descomentar para salida por terminal
+# completo
 
-    main_s_17 > $dir_path\$file
-}
+# Para salida por fichero
+completo > $directorio\$nombre_fichero
+
+
